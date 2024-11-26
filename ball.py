@@ -10,8 +10,8 @@ class Ball:
     def __init__(self, x=None, y=None):
         if Ball.image == None:
             Ball.image = load_image('ball21x21.png')
-        self.x = x if x else random.randint(0, server.background_width)
-        self.y = y if y else random.randint(0, server.background_height)
+        self.x = x if x else random.randint(100, server.background_width-100)
+        self.y = y if y else random.randint(100, server.background_height-100)
 
     def draw(self):
         sx = self.x - server.background.window_left
@@ -27,5 +27,5 @@ class Ball:
 
     def handle_collision(self, group, other):
         if group == 'boy:ball':
-            if self in game_world.all_objects():  # 객체가 게임 월드에 존재하는지 확인
+            if self in game_world.all_objects():
                 game_world.remove_object(self)
